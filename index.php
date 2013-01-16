@@ -12,7 +12,7 @@ if(isset($_REQUEST['help'])) {
 //test to see if session exsists in database
 $b = testCurrentUser(); //tests to see if current user has a hash
 if($b) {//current user has a hash, he can play, use his number
-	//do nothing, 
+	//do nothing,
 }
 else {//current user does NOT have a hash or it has expired, you'll need to create one
 	createUserWinningNumber(); //create number for session
@@ -44,15 +44,15 @@ if(isset($_POST['j']) && isset($_POST['jk'])) {
 	var token = 5;//seconds
 	var jj = true;
 	$(document).ready(function() {
-		
-		$(".box").bind('click', function() {			
+
+		$(".box").bind('click', function() {
 			if(jj) {
 				$('span').each(function() {
 					$(this).removeClass('box').addClass('disabled');
 				});
 				$(this).addClass('clicked');
-				$.post("index.php",{ 
-						j: this.id, 
+				$.post("index.php",{
+						j: this.id,
 						jk: jj },
 					function (data, status) {
 						jj = false;
@@ -68,7 +68,7 @@ if(isset($_POST['j']) && isset($_POST['jk'])) {
 				},
 				"json");
 			}
-		});	
+		});
 	});
 </script>
 <style>
@@ -77,7 +77,7 @@ if(isset($_POST['j']) && isset($_POST['jk'])) {
 		margin: 0 auto;
 		width: 800px;
 	}
-	
+
 	h2 {
 		text-align: center;
 	}
@@ -101,29 +101,29 @@ if(isset($_POST['j']) && isset($_POST['jk'])) {
 	span.clicked {
 		background-color: red;
 	}
-	
+
 	#dollar_area {
-		
+
 		background-color: #e69;
 	}
 	#dollar_table {
-		margin-left:auto; 
+		margin-left:auto;
 		margin-right:auto;
 	}
-	
+
 	#payout {
 		display: none;
 		text-align: center;
 	}
 	#message {
 		display: none;
-		text-align: center;		
+		text-align: center;
 	}
 </style>
 </head>
 <body>
 	<h2>Find the winning Square and win a whole CREDIT!!!</h2>
-	
+
 	<div id='dollar_area'>
 		<table id='dollar_table'>
 		<?php
@@ -131,8 +131,8 @@ if(isset($_POST['j']) && isset($_POST['jk'])) {
 			$ctx = hash_init('sha256');
 			hash_update($ctx, SALT . $i);
 			$hash = hash_final($ctx);
-			
-			
+
+
 			//this is just for testing
 			if($hash == $hash_win) {
 				$number = '<span id="' . $hash . '" class="box" >' . $help . '</span>';
@@ -164,7 +164,7 @@ if(isset($_POST['j']) && isset($_POST['jk'])) {
 	</div>
 	<div id='payout'></div>
 	<div id='message'></div>
-		
+
 <p>If you need help....</p>
 <?php if(isset($_REQUEST['help'])): ?>
 	<p>... click here to <a href='index.php'>hide the winning square</a></p>

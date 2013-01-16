@@ -9,8 +9,8 @@ define("ONE_HUNDRED", 10); //square per row
 
 	/**
 	* returns the hashed session id, this is used
-	* for all players. 
-	* 
+	* for all players.
+	*
 	* @param $id session_id to hash
 	*
 	* @return hash string
@@ -19,12 +19,12 @@ define("ONE_HUNDRED", 10); //square per row
 		return hash('sha256', USER_SALT . $id); //
 	}
 	/**
-	* tests the user to see if they already have a 
+	* tests the user to see if they already have a
 	* number[yes|no], We need to make sure the user is in
-	* the session_hash table. else they'll never find 
+	* the session_hash table. else they'll never find
 	* the number. because no number would exist for them
 	*
-	* test is based on their hashed session id and whichever 
+	* test is based on their hashed session id and whichever
 	* active number belongs to them
 	*
 	* @return bool;
@@ -43,10 +43,10 @@ define("ONE_HUNDRED", 10); //square per row
 		}
 		return $b;
 	}
-	
+
 	/**
 	* Creates a winning number for thie user
-	* 
+	*
 	* @return null
 	*/
 	function createUserWinningNumber() {
@@ -58,12 +58,12 @@ define("ONE_HUNDRED", 10); //square per row
 		$sql = 'INSERT INTO session_hash (session_id, number_hash, active, ip) VALUES ("' . $id . '","' . $hash . '",1,"' . $ip . '")';
 		$conn->query($sql);
 	}
-	
+
 	/**
-	* returns the winning number. This is dangeroius! 
+	* returns the winning number. This is dangeroius!
 	* It may be possible to somehow gain access to this method
 	* will have to do more research to lock this method
-	* 
+	*
 	* @return $hash [string]
 	*/
 	function getUsersWinningNumber() {
@@ -81,13 +81,13 @@ define("ONE_HUNDRED", 10); //square per row
 		return $hash;
 	}
 	/**
-	* this is the main cog 
+	* this is the main cog
 	* this is called everytime the user clicks on a square
 	* tests to see if the passed hash string is the correct hash.
 	*
 	* @param $hash [string] = hash value of a number
 	*
-	* @return $b [bool]; 
+	* @return $b [bool];
 	*/
 	function checkUsersWinningNumber($hash) {
 		$b = false;
@@ -107,7 +107,7 @@ define("ONE_HUNDRED", 10); //square per row
 			$conn->query($lost_query);
 		}
 		createUserWinningNumber();
-		
+
 		return $b;
 	}
 
