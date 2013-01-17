@@ -1,0 +1,67 @@
+        body {
+            font-family: Tahoma;
+            margin: 0 auto;
+            width: 800px;
+        }
+
+        h1 span {
+            font-size: 20px;
+        }
+        h2 {
+            text-align: center;
+        }
+        #dollar_table span {
+            display: block;
+            width: 30px;
+            height: 30px;
+            box-shadow: 1px 1px 5px #666;
+            border-radius: 5px;
+        }
+        #dollar_table span.box {
+            cursor: pointer;
+            background-color: #fff;
+        }
+        #dollar_table span.box:hover {
+            background-color: green;
+        }
+        #dollar_table span.disabled {
+            background-color: #fff;
+            cursor: default;
+        }
+        #dollar_table span.clicked {
+            background-color: red;
+        }
+        #content {
+            margin: 0 auto;
+            width: 350px;
+        }
+
+        #dollar_area {
+            border-radius: 5px;
+            background-color: #e69;
+            width: 352px;
+            padding: 10px;
+
+        }
+        #dollar_table {
+            margin-left:auto;
+            margin-right:auto;
+        }
+
+        #payout {
+            display: none;
+            text-align: center;
+        }
+        #message {
+            display: none;
+            text-align: center;
+        }
+        header h1 {
+            text-align: center;
+            margin-bottom: 0px;
+        }
+        header h3 {
+            margin-top: 0px;
+            text-align: right;
+            text-shadow: 1px 1px red;
+        }
