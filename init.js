@@ -1,7 +1,6 @@
 var token = 5;//seconds
 var jj = true;
 $(document).ready(function() {
-
     $(".box").bind('click', function() {
         if(jj) {
             $('span').each(function() {
