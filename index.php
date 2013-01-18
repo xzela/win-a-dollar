@@ -26,7 +26,7 @@ if(isset($_POST['j']) && isset($_POST['jk'])) {
 	$a = array();
 	if($bool && $_POST['jk']) {
 		$a['validation'] = true;
-		$a['message'] = 'Yo Yo Yo! YTMNG! Way to win a credit!';
+		$a['message'] = 'Yo Yo Yo! YTMND! Way to win a credit!';
 	}
 	else {
 		$a['validation'] = false;
