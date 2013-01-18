@@ -38,11 +38,11 @@ span.luck {
     box-shadow: 1px 1px 5px #666;
     border-radius: 5px;
 }
-#dollar_table span.box {
+#dollar_table span {
     cursor: pointer;
     background-color: #fff;
 }
-#dollar_table span.box:hover {
+#dollar_table span:hover {
     background-color: green;
 }
 #dollar_table span.disabled {

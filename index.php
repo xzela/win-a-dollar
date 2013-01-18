@@ -3,6 +3,8 @@ ob_start();
 session_regenerate_id(true); //always regenerate a new session id
 
 include 'winadollar.methods.php';
+$dollars = new Dollars();
+
 $help = '';
 
 if(isset($_REQUEST['help'])) {
@@ -10,17 +12,17 @@ if(isset($_REQUEST['help'])) {
 }
 
 //test to see if session exsists in database
-$b = testCurrentUser(); //tests to see if current user has a hash
+$b = $dollars->testCurrentUser(); //tests to see if current user has a hash
 if($b) {//current user has a hash, he can play, use his number
 	//do nothing,
 }
 else {//current user does NOT have a hash or it has expired, you'll need to create one
-	createUserWinningNumber(); //create number for session
+	$dollars->createUserWinningNumber(); //create number for session
 }
-$hash_win = getUsersWinningNumber();//this is the winning number for this session
+$hash_win = $dollars->getUsersWinningNumber();//this is the winning number for this session
 
 if(isset($_POST['j']) && isset($_POST['jk'])) {
-	$bool = checkUsersWinningNumber($_POST['j']);
+	$bool = $dollars->checkUsersWinningNumber($_POST['j']);
 	$a = array();
 	if($bool && $_POST['jk']) {
 		$a['validation'] = true;
@@ -37,6 +39,7 @@ if(isset($_POST['j']) && isset($_POST['jk'])) {
 
 ?>
 <!DOCTYPE html>
+<!-- check out the true source on https://github.com/xzela/win-a-dollar -->
 <html>
 <head>
 	<title>Win a Credit</title>
@@ -55,16 +58,16 @@ if(isset($_POST['j']) && isset($_POST['jk'])) {
 		<div id="content">
 			<div id='dollar_area'>
 				<table id='dollar_table'>
-					<!-- thinking of taking a quick peak eh? -->
+					<!-- thinking of taking a quick peak, eh? -->
 					<!-- you and all of your friends have unique hashes. -->
 					<?php for($i = 1; $i < TEN_THOUNSAND; $i++): ?>
 						<?php $ctx = hash_init('sha256'); ?>
 						<?php hash_update($ctx, SALT . $i); ?>
 						<?php $hash = hash_final($ctx); ?>
 						<?php if($hash == $hash_win): ?>
-							<?php $number ='<span id="' . $hash . '" class="box" >' . $help . '</span>'; ?>
+							<?php $number ='<span id="' . $hash . '" >' . $help . '</span>'; ?>
 						<?php else: ?>
-							<?php $number = '<span id="' . $hash . '" class="box" >' . '</span>'; ?>
+							<?php $number = '<span id="' . $hash . '" >' . '</span>'; ?>
 						<?php endif; ?>
 						<?php if(($i % ONE_HUNDRED) == 1): ?>
 
