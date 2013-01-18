@@ -1,8 +1,8 @@
 <?php
 class Database {
-	var $conn;
+	public $conn;
 
-	function open() {
+	public function open() {
 		$dbhost = 'localhost';
 		$dbuser = 'winadollar';
 		$dbpass =  '';
@@ -10,11 +10,11 @@ class Database {
 		mysql_select_db('winadollar01');
 	}
 
-	function query($query) {
+	public function query($query) {
 		return mysql_query($query);
 	}
 
-	function close() {
+	public function close() {
 		mysql_close($this->conn);
 
 	}
